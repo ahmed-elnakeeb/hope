@@ -6,7 +6,7 @@ def exit_handler():
     print ('My application is ending!')
     time.sleep(1)
     clear()
-def  clear():
+def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 def main():
     while (True):
@@ -78,11 +78,21 @@ def controle(username,password):
             controle(username,password)
         else:
             print("user name avilable")
-            mysqlite.qurey("update users set userName='"+new+"' where userName='"+username+"'")
+            qry="update users set userName='"+new+"' where userName='"+username+"'"
+            sql=mysqlite("users.db")
+            sql.qurey(qry)
             username=new
-            time.sleep(3)
+            time.sleep(1)
             controle(username,password)
     elif myin=="2":
+        print ("new user password is ")
+        newpass=input()
+
+        qry="update users set userPassword='"+newpass+"' where userName='"+username+"'"
+        sql=mysqlite("users.db")
+        sql.qurey(qry)
+        password=newpass
+        time.sleep(1)
         controle(username,password)
     elif myin=="3":
         print("user name :",username,"\n","password :",password,"\n press any key to continue")
@@ -120,5 +130,6 @@ def register():
         main()
     except:
         print("cant add user ")
+
 atexit.register(exit_handler)
 main()

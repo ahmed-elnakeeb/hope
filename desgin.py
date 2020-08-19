@@ -38,10 +38,6 @@ class fig():
         except :
             return(u""+colors["white"]+""+text+u"\u001b[0m" )
 
-       
-x=fig.write("hello",fontNumber=1)
-print(x)       
-
 
 
 '''
