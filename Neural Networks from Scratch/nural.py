@@ -49,10 +49,10 @@ class Network:
         print("input :",self.input_Layer,"\noutput :",self.layers[-1],"\nfirstlayer:",self.layers[0],"\nweights:",str(self.weights))
 
     def setweights(self):
-        self.weights=[numpy.random.randn(self._laiersize,self._inputs)]
+        self.weights=[numpy.random.rand(self._laiersize,self._inputs)]
         for i in range(1,self._layers_number-2):
-            self.weights.append([numpy.random.randn(self._laiersize,self._laiersize)])
-        self.weights.append(numpy.random.randn(self._outputs,self._laiersize))
+            self.weights.append([numpy.random.rand(self._laiersize,self._laiersize)])
+        self.weights.append(numpy.random.rand(self._outputs,self._laiersize))
 
 
 
@@ -63,7 +63,7 @@ class Network:
 import timeit
 
 start = timeit.default_timer()
-mynetwork=Network(inputs=3,outputs=5,layer_Size=1000,layers_number=1000)
+mynetwork=Network(inputs=3,outputs=5,layer_Size=100,layers_number=10)
 
 print(mynetwork.do([1,2,3]))
 

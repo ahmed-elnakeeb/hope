@@ -1,5 +1,5 @@
 import numpy
-
+import json
 inputs = numpy.random.rand(10)
 
 w = numpy.random.rand(100,10)
