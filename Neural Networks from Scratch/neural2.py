@@ -1,6 +1,7 @@
 import numpy
 import sys
 import timeit
+from numba import jit, cuda 
 
 numpy.random.seed(0)
 
@@ -14,7 +15,6 @@ class neural_Layer:
         x="\n"+str(self.weights)+"biases\n"+str(self.biases)
         return (x)
 class activation:
-
     @staticmethod
     def ReLU(inputs):
         return(numpy.maximum(0,inputs))
@@ -23,6 +23,7 @@ class activation:
         """Compute softmax values for each sets of scores in x."""
         return numpy.exp(x) / numpy.sum(numpy.exp(x), axis=0)
 class Network:
+    
     def __init__(self,n_inputs,n_outputs,act_fun,*args):
         """
         args should be i the format of (...,number of layers ,layer size,
@@ -55,7 +56,7 @@ class Network:
 start = timeit.default_timer()
 
 X=numpy.random.rand(128,3)
-mynetwork=Network(3,5,"relu",2,5)
+mynetwork=Network(3,5,"relu",100,100)
 mynetwork.forward_All(X)
 
 print("last layer\n\n\n",mynetwork.layers[-1].output)
